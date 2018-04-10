@@ -3,6 +3,6 @@ class piwam::bundle {
 
   bundle::install { $piwam::path:
     user    => $::piwam::deploy_user,
-    timeout => '600',
+    timeout => 600,
   }
 }
