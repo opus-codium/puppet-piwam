@@ -9,9 +9,10 @@ class piwam::repo {
   }
 
   vcsrepo { $::piwam::path:
-    ensure   => present,
+    ensure   => latest,
     provider => 'git',
-    source   => 'https://github.com/piwam/piwam.git',
+    source   => 'https://github.com/haum/piwam.git',
+    revision => 'accounts-display-incomes-expenses',
     user     => $::piwam::deploy_user,
     depth    => 1,
   }
