@@ -6,13 +6,13 @@ class piwam (
   $database_name,
   $database_user ,
   $database_password,
+  $ssl_cert,
+  $ssl_key,
+  $ssl_chain,
   $user = 'piwam',
   $group = 'piwam',
   $deploy_user = 'oneshot',
   $deploy_group = 'oneshot',
-  $ssl_cert,
-  $ssl_key,
-  $ssl_chain,
 ) {
   include bundle
 
@@ -26,25 +26,25 @@ class piwam (
   include piwam::assets
   include piwam::vhost
 
-  Class['piwam::packages'] ->
-  Class['piwam::user'] ->
-  Class['piwam::repo'] ->
-  Class['piwam::setup'] ->
-  Class['piwam::db'] ->
-  Class['piwam::bundle'] ->
-  Class['piwam::migrate'] ->
-  Class['piwam::assets'] ->
-  Class['piwam::vhost']
+  Class['piwam::packages']
+  -> Class['piwam::user']
+  -> Class['piwam::repo']
+  -> Class['piwam::setup']
+  -> Class['piwam::db']
+  -> Class['piwam::bundle']
+  -> Class['piwam::migrate']
+  -> Class['piwam::assets']
+  -> Class['piwam::vhost']
 
-  Class['piwam::repo'] ~>
-  Class['piwam::bundle'] ~>
-  Class['piwam::migrate']
+  Class['piwam::repo']
+  ~> Class['piwam::bundle']
+  ~> Class['piwam::migrate']
 
-  Class['piwam::db'] ~>
-  Class['piwam::migrate'] ~>
-  Service['httpd']
+  Class['piwam::db']
+  ~> Class['piwam::migrate']
+  ~> Service['httpd']
 
-  Class['piwam::repo'] ~>
-  Class['piwam::setup'] ~>
-  Class['piwam::assets']
+  Class['piwam::repo']
+  ~> Class['piwam::setup']
+  ~> Class['piwam::assets']
 }

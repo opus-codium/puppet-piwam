@@ -8,7 +8,7 @@ class piwam::db {
     owner   => $::piwam::deploy_user,
     group   => $::piwam::group,
     mode    => '0440',
-    content => template('piwam/database.yml.erb')
+    content => template('piwam/database.yml.erb'),
   }
   postgresql::server::db { $::piwam::database_name:
     user     => $::piwam::database_user,

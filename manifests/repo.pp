@@ -17,6 +17,6 @@ class piwam::repo {
     depth    => 1,
   }
 
-  File[$::piwam::path] ->
-  Vcsrepo[$::piwam::path]
+  File[$::piwam::path]
+  -> Vcsrepo[$::piwam::path]
 }
