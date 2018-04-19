@@ -18,6 +18,6 @@ class piwam::migrate {
     mode   => '0644',
   }
 
-  Bundle::Exec['piwam db:migrate'] ->
-  File["${::piwam::path}/db/schema.rb"]
+  Bundle::Exec['piwam db:migrate']
+  -> File["${::piwam::path}/db/schema.rb"]
 }
